@@ -1,5 +1,5 @@
 ###################################################
-toTileDaum <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")){
+toTileDaum <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2]){
     require(rgdal)
     maxZoomLevels <- 14
     if(!is.na(zoom)){
