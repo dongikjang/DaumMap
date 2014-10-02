@@ -270,9 +270,7 @@ WGS842Daum <- function(lanepath, raw=FALSE){
   colnames(lanepath) <- c("x", "y")
   coordinates(lanepath) <- c("x", "y")
   proj4string(lanepath) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
-  lanepath <- spTransform(lanepath, CRS("+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 
-                                        +k=1 +x_0=1000000 +y_0=2000000 +ellps=GRS80 
-                                        +units=m +no_defs"))
+  lanepath <- spTransform(lanepath, CRS("+proj=tmerc +lat_0=38 +lon_0=127 +k=1 +x_0=200000 +y_0=500000 +ellps=GRS80 +units=m +no_defs"))
   xy <- coordinates(lanepath)
   if(raw){
     xy[, 1] <- xy[, 1] * 2.5
