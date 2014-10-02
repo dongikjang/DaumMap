@@ -279,3 +279,12 @@ WGS842Daum <- function(lanepath, raw=FALSE){
   return(xy)
 }
 
+Daum2WGS84 <- function(xy){
+    xy <- data.frame(x = as.numeric(xy[,1])/2.5,
+                     y = as.numeric(xy[,2])/2.5)
+    
+    coordinates(xy) <- c("x", "y")
+    proj4string(xy) <- CRS("+proj=tmerc +lat_0=38 +lon_0=127 +k=1 +x_0=200000 +y_0=500000 +ellps=GRS80 +units=m +no_defs")
+    xywgs84 <- spTransform(xy, CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
+    coordinates(xywgs84)
+}
