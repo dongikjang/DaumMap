@@ -54,7 +54,7 @@ toTileDaum <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2]){
 }
 
 
-getDaumMap <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum"), GRAYSCALE=FALSE){
+getDaumMap <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2], GRAYSCALE=FALSE){
     require(png)
     require(RgoogleMaps)
     lon <- sort(lon)
