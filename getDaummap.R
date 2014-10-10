@@ -74,7 +74,7 @@ getDaumMap <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2], GRAYSC
         ny <- 0
         for(y in ytileind){
             addr <- paste("http://i1.maps.daum-img.net/map/image/G03/i/2200keery/L", z, "/", y, "/", x, ".png", sep="")
-            download.file(addr, "test.png", quiet = TRUE)
+            download.file(addr, "test.png", quiet = TRUE, mode="wb")
             if(GRAYSCALE){
               test <- readPNG("test.png", native = FALSE)
               test <- RGB2GRAY(test)
