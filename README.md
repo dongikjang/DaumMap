@@ -17,7 +17,7 @@ gitaddress <- "https://raw.githubusercontent.com/dongikjang/DaumMap/"
 # load the source code
 library(RCurl)
 
-u <- paste(gitaddress, "/master/getDaummap.R", sep="")
+u <- paste(gitaddress, "master/getDaummap.R", sep="")
 eval(parse(text = getURL(u, followlocation = TRUE, 
                          cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))), 
      envir = .GlobalEnv)
