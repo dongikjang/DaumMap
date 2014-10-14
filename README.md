@@ -10,9 +10,13 @@ require(rgdal)
 require(png)
 require(RgoogleMaps)
 require(RColorBrewer)
+
+# load location of traffic counting data in Seoul
 tloc <- read.csv("TCountingLocInSeoul.csv", header=TRUE, stringsAsFactors = FALSE)
 lon <- tloc$X5
 lat <- tloc$X6
+
+# download Daum Map tiles
 dmap <- getDaumMap(lon, lat, zoom=NA)
 cols <- brewer.pal(9, "Set1")
 plot(dmap)
