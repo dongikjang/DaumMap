@@ -2,6 +2,20 @@ DaumMap
 =======
 R functions for using Daum Map tiles
 
+### Load the source code for using Daumr Map tiles
+
+```coffee
+gitaddress <- "https://raw.githubusercontent.com/dongikjang/DaumMap/"
+
+# load the source code
+library(RCurl)
+
+u <- paste(gitaddress, "master/getDaummap.R", sep="")
+eval(parse(text = getURL(u, followlocation = TRUE, 
+                         cainfo = system.file("CurlSSL", "cacert.pem", 
+                                              package = "RCurl"))), 
+     envir = .GlobalEnv)
+```
 
 ### An example
 
@@ -10,18 +24,6 @@ require(rgdal)
 require(png)
 require(RgoogleMaps)
 require(RColorBrewer)
-
-
-gitaddress <- "https://raw.githubusercontent.com/dongikjang/DaumMap/"
-
-# load the source code
-library(RCurl)
-
-u <- paste(gitaddress, "master/getDaummap.R", sep="")
-eval(parse(text = getURL(u, followlocation = TRUE, 
-                         cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))
-           ), 
-     envir = .GlobalEnv)
 
 # load location of traffic counting data in Seoul 
 TCLoc <- getURL(paste(gitaddress, "master/TCountingLocInSeoul.csv", sep=""),
