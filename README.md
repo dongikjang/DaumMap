@@ -2,7 +2,7 @@ DaumMap
 =======
 R functions for using Daum Map tiles
 
-### Load the source code for using Daumr Map tiles
+### Load the source code for using Daum Map tiles
 
 ```coffee
 gitaddress <- "https://raw.githubusercontent.com/dongikjang/DaumMap/"
