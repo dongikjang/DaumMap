@@ -58,7 +58,8 @@ toTileDaum <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2]){
 }
 
 
-getDaumMap <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2], GRAYSCALE=FALSE){
+getDaumMap <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2], GRAYSCALE=FALSE, 
+                       mapstyle=c("Hybrid", "Physical", "Satellite", "Street")){
     require(png)
     require(RgoogleMaps)
     lon <- sort(lon)
@@ -73,11 +74,34 @@ getDaumMap <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2], GRAYSC
   
     tmp1 <- NULL
     nx <- 0
+    mapadd <- switch(mapstyle[1],
+                      Hybrid = "http://i1.maps.daum-img.net/map/image/G03/i/2200keery/L",
+                      Physical = "http://sr1.maps.daum-img.net/map/image/G03/sr/2.00/L",
+                      Satellite = "http://s1.maps.daum-img.net/L",
+                      Street = "http://i1.maps.daum-img.net/map/image/G03/i/1.20/L")
     for(x in xtileind){
         tmp2 <- NULL
         ny <- 0
         for(y in ytileind){
-            addr <- paste("http://i1.maps.daum-img.net/map/image/G03/i/2200keery/L", z, "/", y, "/", x, ".png", sep="")
+          if(mapstyle == "Satellite"){
+            addr <- paste(mapadd, z, "/", y, "/", x, ".jpg?v=140830", sep="")
+            download.file(addr, "test.jpg", quiet = TRUE, mode="wb")
+            if(GRAYSCALE){
+              #require(jpeg)
+              test <- readJPEG("test.png", native = FALSE)
+              test <- RGB2GRAY(test)
+              writeJPEG(test, "test.jpg")
+              test <- readJPEG("test.jpg", native = FALSE)
+              tmp2 <- rbind(test, tmp2)
+            } else{
+              test <- readJPEG("test.jpg")
+              ny <- ny + 256
+              tmp2 <- array(c(rbind(test[,,1], tmp2[,,1]),
+                              rbind(test[,,2], tmp2[,,2]),
+                              rbind(test[,,3], tmp2[,,3])), dim = c(ny, 256, 3))
+            }
+          } else {
+            addr <- paste(mapadd, z, "/", y, "/", x, ".png", sep="")
             download.file(addr, "test.png", quiet = TRUE, mode="wb")
             if(GRAYSCALE){
               test <- readPNG("test.png", native = FALSE)
@@ -92,7 +116,7 @@ getDaumMap <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2], GRAYSC
                               rbind(test[,,2], tmp2[,,2]),
                               rbind(test[,,3], tmp2[,,3])), dim = c(ny, 256, 3))
             }
-            
+          }  
             
         }
         if(GRAYSCALE){
