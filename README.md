@@ -20,10 +20,12 @@ eval(parse(text = getURL(u, followlocation = TRUE,
 ### An example
 
 ```coffee
-require(rgdal)
-require(png)
-require(RgoogleMaps)
-require(RColorBrewer)
+library(rgdal)
+library(png)
+library(jpeg)
+library(RgoogleMaps)
+library(RColorBrewer)
+library(RCurl)
 
 # load location of traffic counting data in Seoul 
 TCLoc <- getURL(paste(gitaddress, "master/TCountingLocInSeoul.csv", sep=""),
@@ -36,7 +38,9 @@ lon <- tloc$X5
 lat <- tloc$X6
 
 # download Daum Map tiles
-dmap <- getDaumMap(lon, lat, zoom=NA)
+dmap <- getDaumMap(lon, lat, zoom=NA, mapstyle="Hybrid")
+# Select the map style among "Hybrid", "Physical", "Satellite" and "Street".
+# Default is "Hybrid".
 cols <- brewer.pal(9, "Set1")
 plot(dmap)
 daumloc <- WGS842Daum(tloc[ , c("X5", "X6")])
