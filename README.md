@@ -14,10 +14,10 @@ require(RColorBrewer)
 # load location of traffic counting data in Seoul
 library(RCurl)       
 gitaddress <- "https://raw.githubusercontent.com/dongikjang/DaumMap/"
-TCountingLocInSeoul <- getURL(paste(gitaddress, "master/TCountingLocInSeoul.csv", sep=""),
-  		                        cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))
-#write(TCountingLocInSeoul, file="TCountingLocInSeoul.csv")
-tloc <- read.csv(textConnection(TCountingLocInSeoul), stringsAsFactors = FALSE,
+TCLoc <- getURL(paste(gitaddress, "master/TCountingLocInSeoul.csv", sep=""),
+                cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))
+#write(TCLoc, file="TCountingLocInSeoul.csv")
+tloc <- read.csv(textConnection(TCLoc), stringsAsFactors = FALSE,
                  fileEncoding = "UTF-8")
                  
 lon <- tloc$X5
