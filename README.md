@@ -3,7 +3,7 @@ DaumMap
 R functions for using Daum Map tiles
 
 
-### Daum Map
+### An example
 
 ```coffee
 require(rgdal)
