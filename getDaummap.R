@@ -131,13 +131,13 @@ getDaumMap <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2], GRAYSC
     
     }
   
-    outobj <- list(pngmap = tmp1, bbox=tileind$bbox, tileind=tileind, zoom=zoom, maproj=maproj)
+    outobj <- list(pngmap = tmp1, bbox=tileind$bbox, tileind=tileind, zoom=zoom, maproj=maproj, mapstyle=mapstyle)
     class(outobj) <- "daummap"
     return(outobj)
 }
 
 print.daummap <- function(obj){
-    cat("Importing Daum map tiles\n")
+    cat(paste("Importing Daum map tiles (", obj$mapstyle, ")\n", sep=""))
     cat(paste(" Zoom Level:", obj$zoom, "\n")) 
     cat(paste(" Tile :", diff(obj$tileind$xtileind)+1, "*", diff(obj$tileind$ytileind)+1), "\n") 
     cat(paste(" Tile index: longitude (", obj$tileind$xtileind[1], "-", 
