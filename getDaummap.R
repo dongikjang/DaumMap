@@ -219,6 +219,9 @@ getDaumMapimg <- function(lon, lat, zoom=NA, GRAYSCALE=FALSE){
   lon <- sort(lon)
   lat <- sort(lat)
   
+  if(length(lon) > 2) lon <- range(lon, na.rm=TRUE)
+  if(length(lat) > 2) lat <- range(lat, na.rm=TRUE)
+  
   tileind <- toTileDaum(lon, lat, zoom=zoom, maproj="Naver")
   
   zoom <- tileind$zoom
