@@ -12,7 +12,7 @@ require(RgoogleMaps)
 require(RColorBrewer)
 
 # load location of traffic counting data in Seoul
-tloc <- read.csv("TCountingLocInSeoul.csv", header=TRUE, stringsAsFactors = FALSE)
+tloc <- read.csv("TCountingLocInSeoul.csv", header = TRUE, stringsAsFactors = FALSE)
 lon <- tloc$X5
 lat <- tloc$X6
 
@@ -20,7 +20,7 @@ lat <- tloc$X6
 dmap <- getDaumMap(lon, lat, zoom=NA)
 cols <- brewer.pal(9, "Set1")
 plot(dmap)
-daumloc <- WGS842Daum(tloc[, c("X5", "X6")])
+daumloc <- WGS842Daum(tloc[ , c("X5", "X6")])
 points(daumloc,  pch=19, col=cols[tloc$X2])
 ```
 
