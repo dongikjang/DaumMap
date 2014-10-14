@@ -12,7 +12,9 @@ require(RgoogleMaps)
 require(RColorBrewer)
 
 # load location of traffic counting data in Seoul
-tloc <- read.csv("TCountingLocInSeoul.csv", header = TRUE, stringsAsFactors = FALSE)
+tloc <- read.csv("TCountingLocInSeoul.csv", 
+                 header = TRUE, stringsAsFactors = FALSE,
+                 fileEncoding = "UTF-8")
 lon <- tloc$X5
 lat <- tloc$X6
 
