@@ -19,7 +19,8 @@ library(RCurl)
 
 u <- paste(gitaddress, "master/getDaummap.R", sep="")
 eval(parse(text = getURL(u, followlocation = TRUE, 
-                         cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))), 
+                         cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))
+           ), 
      envir = .GlobalEnv)
 
 # load location of traffic counting data in Seoul 
