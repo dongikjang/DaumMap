@@ -83,7 +83,7 @@ getDaumMap <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2], GRAYSC
         tmp2 <- NULL
         ny <- 0
         for(y in ytileind){
-          if(mapstyle == "Satellite"){
+          if(mapstyle[1] == "Satellite"){
             addr <- paste(mapadd, z, "/", y, "/", x, ".jpg?v=140830", sep="")
             download.file(addr, "test.jpg", quiet = TRUE, mode="wb")
             if(GRAYSCALE){
@@ -131,7 +131,7 @@ getDaumMap <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2], GRAYSC
     
     }
   
-    outobj <- list(pngmap = tmp1, bbox=tileind$bbox, tileind=tileind, zoom=zoom, maproj=maproj, mapstyle=mapstyle)
+    outobj <- list(pngmap = tmp1, bbox=tileind$bbox, tileind=tileind, zoom=zoom, maproj=maproj, mapstyle=mapstyle[1])
     class(outobj) <- "daummap"
     return(outobj)
 }
