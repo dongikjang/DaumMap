@@ -4,7 +4,7 @@ R functions for using Daum Map tiles
 
 ### Load the source code for using Daum Map tiles
 
-```coffee
+```r
 gitaddress <- "https://raw.githubusercontent.com/dongikjang/DaumMap/"
 
 # load the source code
@@ -19,7 +19,7 @@ eval(parse(text = getURL(u, followlocation = TRUE,
 
 ### An example
 
-```coffee
+```r
 library(rgdal)
 library(png)
 library(jpeg)
