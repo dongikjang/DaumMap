@@ -139,7 +139,8 @@ getDaumMap <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2], GRAYSC
                     +towgs84=0,0,0,0,0,0,0 +units=m +no_defss")
     }
   
-    outobj <- list(pngmap = tmp1, bbox=tileind$bbox, tileind=tileind, zoom=zoom, maproj=maproj, mapstyle=mapstyle[1])
+    outobj <- list(pngmap = tmp1, bbox=tileind$bbox, tileind=tileind, zoom=zoom, 
+                   maproj=maproj, proj4=proj4, mapstyle=mapstyle[1])
     class(outobj) <- "daummap"
     return(outobj)
 }
