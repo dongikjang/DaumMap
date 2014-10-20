@@ -84,4 +84,4 @@ daumloc <- WGS842Daum(tloc[ , c("X5", "X6")])
 points(daumloc,  pch=19, col=cols[tloc$X2])
 ```
 
-![tloc](screenshots/tloc.png)
+![daummap](screenshots/daummap.jpeg)
