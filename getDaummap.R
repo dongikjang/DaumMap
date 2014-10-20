@@ -130,6 +130,14 @@ getDaumMap <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2], GRAYSC
         
     
     }
+    if(maproj[1] == "WGS84"){
+      proj4 <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84
+                   +units=m +no_defs")
+    } else{
+      proj4 <- CRS("+proj=tmerc +lat_0=38 +lon_0=127 +k=1 
+                    +x_0=200000  +y_0=500000 +ellps=GRS80 
+                    +towgs84=0,0,0,0,0,0,0 +units=m +no_defss")
+    }
   
     outobj <- list(pngmap = tmp1, bbox=tileind$bbox, tileind=tileind, zoom=zoom, maproj=maproj, mapstyle=mapstyle[1])
     class(outobj) <- "daummap"
@@ -147,12 +155,12 @@ print.daummap <- function(obj){
         "\n")
     
     if(obj$maproj == "WGS84"){
-        projval <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 
+        projval <- CRS("+proj=losnglat +ellps=WGS84 +datum=WGS84 
                         +units=m +no_defs")
     } else{
-        projval <- CRS("+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 
-                        +k=1 +x_0=1000000 +y_0=2000000 +ellps=GRS80 
-                         +units=m +no_defs")
+        projval <- CRS("+proj=tmerc +lat_0=38 +lon_0=127 +k=1 
+                       +x_0=200000  +y_0=500000 +ellps=GRS80 
+                       +towgs84=0,0,0,0,0,0,0 +units=m +no_defs")
     }
     print(projval)
     cat(paste(" Map projection:", obj$maproj), "\n")
