@@ -170,7 +170,7 @@ print.daummap <- function(obj){
     print(cbind(long = range(obj$bbox[, 1]), lati = range(obj$bbox[, 2])))
 }
 
-plot.daummap <- function(x, interpolate=TRUE, angle=0, ...){
+plot.daummap <- function(x, interpolate=TRUE, angle=0, xlab = "Longitude", ylab = "Latitude",...){
     xrng <- range(x$bbox[, 1])
     yrng <- range(x$bbox[, 2])
     if(x$maproj == "WGS84"){
@@ -229,7 +229,7 @@ plot.daummap <- function(x, interpolate=TRUE, angle=0, ...){
           rasterimg[(m-ind[i]):m, n-i] <- "transparent"
         }
         
-        plot(xrng, yrng, type = "n", xlab = "Longitude", ylab = "Latitude", 
+        plot(xrng, yrng, type = "n", xlab = xlab, ylab = yalb, 
              xaxs='i', yaxs='i', asp=1, axes=FALSE)
         rasterImage(rasterimg, xrng[1], yrng[1], xrng[2], yrng[2],
                     interpolate = interpolate, angle=angdgree, ...)    
@@ -237,7 +237,7 @@ plot.daummap <- function(x, interpolate=TRUE, angle=0, ...){
         axis(2)
     } else {
         axes <- FALSE
-        plot(xrng, yrng, type = "n", xlab = "Longitude", ylab = "Latitude", 
+        plot(xrng, yrng, type = "n", xlab = xlab, ylab = ylab, 
              xaxs='i', yaxs='i', asp=1, axes=FALSE)
         
         rasterImage(x$pngmap, xrng[1], yrng[1], xrng[2], yrng[2],
