@@ -59,7 +59,7 @@ toTileDaum <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2]){
 
 
 getDaumMap <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2], GRAYSCALE=FALSE, 
-                       mapstyle=c("Hybrid", "Physical", "Satellite", "Street")){
+                       mapstyle=c("Street", "Hybrid", "Physical", "Satellite")){
     require(png)
     require(RgoogleMaps)
     lon <- sort(lon)
@@ -75,10 +75,10 @@ getDaumMap <- function(lon, lat, zoom=NA, maproj = c("WGS84", "Daum")[2], GRAYSC
     tmp1 <- NULL
     nx <- 0
     mapadd <- switch(mapstyle[1],
-                      Hybrid = "http://i1.maps.daum-img.net/map/image/G03/i/2200keery/L",
-                      Physical = "http://sr1.maps.daum-img.net/map/image/G03/sr/2.00/L",
-                      Satellite = "http://s1.maps.daum-img.net/L",
-                      Street = "http://i1.maps.daum-img.net/map/image/G03/i/1.20/L")
+                      Hybrid = "http://map1.daumcdn.net/map_hybrid/17no/L",
+                      Physical = "http://map1.daumcdn.net/map_shaded_relief/2.00/L",
+                      Satellite = "http://map1.daumcdn.net/map_skyview/L",
+                      Street = "http://map1.daumcdn.net/map_2d/17no/L")
     for(x in xtileind){
         tmp2 <- NULL
         ny <- 0
