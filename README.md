@@ -70,9 +70,9 @@ seoulwgs <- readShapePoly("shpfile/Seoul.shp", proj4string=CRS(proj4val))
 ```
 ### Download Daum Map tiles
 ```r
-dmap <- getDaumMap(lon, lat, zoom=NA, mapstyle="Hybrid")
+dmap <- getDaumMap(lon, lat, zoom=NA, mapstyle="Street")
 # Select the map style among "Hybrid", "Physical", "Satellite" and "Street".
-# Default is "Hybrid".
+# Default is "Street".
 ```
 #### Plot 
 ```r
